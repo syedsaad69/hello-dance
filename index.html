@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World Dance</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #1e1b4b, #4c1d95, #be185d);
+      background-size: 300% 300%;
+      animation: bg-shift 8s ease infinite;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* Each letter of "Hello World" dances on its own */
+    .title {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: clamp(2.5rem, 10vw, 6rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .title span {
+      display: inline-block;
+      animation: dance 1s ease-in-out infinite;
+      text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    .title .space { width: 0.5em; }
+
+    /* Stagger each letter so they move in a wave */
+    .title span:nth-child(1)  { animation-delay: 0.0s;  color: #fde047; }
+    .title span:nth-child(2)  { animation-delay: 0.1s;  color: #fb923c; }
+    .title span:nth-child(3)  { animation-delay: 0.2s;  color: #f472b6; }
+    .title span:nth-child(4)  { animation-delay: 0.3s;  color: #a78bfa; }
+    .title span:nth-child(5)  { animation-delay: 0.4s;  color: #60a5fa; }
+    .title span:nth-child(7)  { animation-delay: 0.5s;  color: #34d399; }
+    .title span:nth-child(8)  { animation-delay: 0.6s;  color: #fde047; }
+    .title span:nth-child(9)  { animation-delay: 0.7s;  color: #fb923c; }
+    .title span:nth-child(10) { animation-delay: 0.8s;  color: #f472b6; }
+    .title span:nth-child(11) { animation-delay: 0.9s;  color: #a78bfa; }
+
+    /* A little stick dancer under the text */
+    .dancer {
+      margin-top: 3rem;
+      font-size: 5rem;
+      animation: groove 0.8s ease-in-out infinite alternate;
+    }
+
+    .note {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0;
+      animation: float-up 4s linear infinite;
+    }
+    .note:nth-of-type(1) { left: 15%; animation-delay: 0s; }
+    .note:nth-of-type(2) { left: 35%; animation-delay: 1s; }
+    .note:nth-of-type(3) { left: 65%; animation-delay: 2s; }
+    .note:nth-of-type(4) { left: 85%; animation-delay: 3s; }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @keyframes dance {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25%      { transform: translateY(-25px) rotate(-10deg); }
+      50%      { transform: translateY(0) rotate(0deg) scale(1.1); }
+      75%      { transform: translateY(-12px) rotate(10deg); }
+    }
+    @keyframes groove {
+      from { transform: rotate(-15deg) translateX(-20px); }
+      to   { transform: rotate(15deg) translateX(20px); }
+    }
+    @keyframes float-up {
+      0%   { bottom: -10%; opacity: 0; transform: rotate(0deg); }
+      20%  { opacity: 1; }
+      100% { bottom: 110%; opacity: 0; transform: rotate(360deg); }
+    }
+    @keyframes bg-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <span class="note">🎵</span>
+  <span class="note">🎶</span>
+  <span class="note">🎵</span>
+  <span class="note">🎶</span>
+
+  <h1 class="title">
+    <span>H</span><span>e</span><span>l</span><span>l</span><span>o</span>
+    <span class="space"> </span>
+    <span>W</span><span>o</span><span>r</span><span>l</span><span>d</span>
+  </h1>
+
+  <div class="dancer">🕺</div>
+
+  <footer>Served from a Docker container on Render</footer>
+</body>
+</html>

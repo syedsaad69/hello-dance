@@ -1,0 +1,13 @@
+server {
+    # Render tells our app which port to use through the PORT variable.
+    # nginx fills in ${PORT} automatically when the container starts.
+    listen ${PORT};
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

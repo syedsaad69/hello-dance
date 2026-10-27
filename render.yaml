@@ -1,0 +1,13 @@
+# Render Blueprint: describes our service as code.
+# Render reads this file from the root of the GitHub repo.
+services:
+  - type: web               # a public website
+    name: hello-dance       # becomes part of your URL: hello-dance-xxxx.onrender.com
+    runtime: docker         # build from our Dockerfile
+    plan: free              # free instance type
+    region: oregon          # closest Render region to Vancouver
+    branch: main            # deploy from the main branch
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: commit   # redeploy automatically on every git push
+    healthCheckPath: /          # Render checks this page to confirm the site is up
